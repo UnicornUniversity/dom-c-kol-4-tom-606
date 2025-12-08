@@ -132,7 +132,7 @@ export function main(dtoIn) {
       workload: workload[i]
     });
   }
-  console.log(vystup);
+  //console.log(vystup);
   return vystup;
 }
 
