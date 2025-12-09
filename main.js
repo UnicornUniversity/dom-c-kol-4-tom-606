@@ -53,7 +53,7 @@ export function getEmployeeStatistics(employees) {
     averageWomenWorkload: workStats[6],
     sortedByWorkload: structuredClone(employees).sort((a, b) => a.workload - b.workload)
   }
-  // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší
+  // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší. structuredClone aby se nezměnil původní pole se zaměstnanci z výstupu ukol3.js.
 
   function workloadStats(employees) {
     let workload10Count = [];
@@ -120,13 +120,14 @@ export function getEmployeeStatistics(employees) {
   let avgAge = averageCounter(ageTotal, ageArray.length);
   // sorting
   let sortedAge = ageArray.sort((a, b) => a - b);
-  // zaokrouhlujeme dolů každý věk.
-  let roundedSortedAge = [];
+  // zaokrouhlujeme dolů každý věk --> ŠPATNĚ, TOTO TESTY NECHTĚJÍ
+  /*let roundedSortedAge = [];
   for (let i = 0; i < sortedAge.length; i++) {
     roundedSortedAge.push(Math.floor(sortedAge[i])) 
   }
+  */
   // volání medianCounter
-  let medianAge = medianCounter(roundedSortedAge);
+  let medianAge = medianCounter(sortedAge);
   // min/max
   // zaokrouhluju DOLŮ - hodí se jen v případě, že ages array nejsou jen přirozená čísla.
   let minAge = Math.floor(Math.min(...ageArray)); // nejmladší zamec.
@@ -151,15 +152,15 @@ function medianCounter(SortedTotalArray) {
   }
   
   // VÝPOČET MEDIÁNU
-  let mean;
+  let median;
   // aplikujeme standartní vzoreček na výpočet mediánu.
   if (suda) {
-    mean = (SortedTotalArray[(SortedTotalArray.length/2)-1]+SortedTotalArray[((SortedTotalArray.length/2)+1)-1])/2;
+    median = (SortedTotalArray[(SortedTotalArray.length/2)-1]+SortedTotalArray[((SortedTotalArray.length/2)+1)-1])/2;
     // Odečítáme od konečného indexu -1, neboť array v JS začíná od nuly
   } else {
-    mean = SortedTotalArray[((SortedTotalArray.length+1)/2)-1];
+    median = SortedTotalArray[((SortedTotalArray.length+1)/2)-1];
      // Odečítáme od konečného indexu -1, neboť array v JS začíná od nuly
   }
-  return Math.floor(mean); // testy očekávají medián zaokrouhelný dolů
+  return Math.floor(median); // testy očekávají medián zaokrouhelný dolů a vstup do výpočtu mediánu seřazený ale nezaokrouhlený
 }
 
