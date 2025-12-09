@@ -51,7 +51,7 @@ export function getEmployeeStatistics(employees) {
     medianAge: ageStats[3],
     medianWorkload: workStats[5],
     averageWomenWorkload: workStats[6],
-    sortedByWorkload: employees.sort((a, b) => a.workload - b.workload),
+    sortedByWorkload: structuredClone(employees).sort((a, b) => a.workload - b.workload)
   }
   // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší
 
@@ -160,6 +160,6 @@ function medianCounter(SortedTotalArray) {
     mean = SortedTotalArray[((SortedTotalArray.length+1)/2)-1];
      // Odečítáme od konečného indexu -1, neboť array v JS začíná od nuly
   }
-  return Math.round(mean); // TODO - check - původně jsem počítal s tím, že ageArray bude jen přirozené číslo.
+  return Math.floor(mean); // testy očekávají medián zaokrouhelný dolů
 }
 
