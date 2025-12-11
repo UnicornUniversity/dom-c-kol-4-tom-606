@@ -28,7 +28,9 @@ export function generateEmployeeData(dtoIn) {
 
 /**
  * Function to generate statistics of employees from input.
- * This function also includes subFunctions to count median and average.
+ * This function also includes 4 subFunctions:
+ * Functions to work with workloadStats and AgeStats respectively,
+ * 2 to count median and average.
  * @param {Array} employees containing all the mocked employee data
  * @returns {object} statistics of the employees
  */
@@ -52,7 +54,12 @@ export function getEmployeeStatistics(employees) {
     sortedByWorkload: structuredClone(employees).sort((a, b) => a.workload - b.workload)
   }
   // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší. structuredClone aby se nezměnil původní pole se zaměstnanci z výstupu ukol3.js.
-
+  
+  /**
+   * Subfunction to count required statistics about workload
+   * @param {Array} employees containing all the mocked employee data
+   * @returns {Array} counted workload statistics
+   */
   function workloadStats(employees) {
     let workload10Count = [];
     let workload20Count = [];
@@ -96,7 +103,11 @@ export function getEmployeeStatistics(employees) {
     let zenaWorkArg = averageCounter(zenaWorkTotal, zenaWork.length);
     return [workloadTotalCount.length, workload10Count.length, workload20Count.length, workload30Count.length, workload40Count.length, meanWork, +zenaWorkArg]
   }
-
+  /**
+   * Subfunction to count statistics about age
+   * @param {Array} employees containing all the mocked employee data
+   * @returns {Array} counted average, median, min and max age.
+   */
   function GetAgeStats(employees) {
     let now = new Date();
     let ageArray = [];
