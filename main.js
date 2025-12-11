@@ -3,18 +3,15 @@
 
 import { main as ukol3 } from './src/ukol3.js';
 
-//TODO doc
 /**
  * The main function which calls the application. 
- * Please, add specific description here for the application purpose.
+ * We call the getEmployeeStatistics function, to it's parametters, 
+ * we put calling the generateEmployeeData, to which we input dToIn.
  * @param {object} dtoIn contains count of employees, age limit of employees {min, max}
  * @returns {object} containing the statistics
  */
 export function main(dtoIn) {
-  //TODO code
-  // zavolání funkce getEmployeeStatisctics
-  // getEmployeeStatistics(generateEmployeeData(dtoIn));
-  //let dtoOut = exMain(dtoIn);
+  // zavolání funkce getEmployeeStatistics
   return getEmployeeStatistics(generateEmployeeData(dtoIn));
 }
 
@@ -30,12 +27,13 @@ export function generateEmployeeData(dtoIn) {
 }
 
 /**
- * Please, add specific description here 
+ * Function to generate statistics of employees from input.
+ * This function also includes subFunctions to count median and average.
  * @param {Array} employees containing all the mocked employee data
  * @returns {object} statistics of the employees
  */
 export function getEmployeeStatistics(employees) {
-  //TODO code
+  // volání pomocných podfunkcí
   let workStats = workloadStats(employees);
   let ageStats = GetAgeStats(employees);
 
@@ -131,20 +129,28 @@ export function getEmployeeStatistics(employees) {
   // min/max
   // zaokrouhluju DOLŮ - hodí se jen v případě, že ages array nejsou jen přirozená čísla.
   let minAge = Math.floor(Math.min(...ageArray)); // nejmladší zamec.
-  let maxAge = Math.floor(Math.max(...ageArray)); // věk nejstaršího zamce. Např. 33,9856478 --> 33
+  let maxAge = Math.floor(Math.max(...ageArray)); // věk nejstaršího zamce.
 
   return [avgAge, minAge, maxAge, medianAge]
   }
-  //let dtoOut = exGetEmployeeStatistics(employees);
   return dtoOut;
 }
-// jednoduchá funkce na výpočet průměru
+/**
+ * Simple subfunction to count average
+ * @param {Array} TotalArray Array of numbers
+ * @param {number} TotalArrayLength Length of the array.
+ * @returns {number} Average rounded to one decimal number.
+ */
 function averageCounter(TotalArray, TotalArrayLength) {
   return +(TotalArray/TotalArrayLength).toFixed(1);
-  // ten plus na převod tu mám dvakrát, jak tady tak kde to returnuju..
 }
 
-// vypočítá medián z sestřídeného pole prvků
+/**
+ * Simple subfunction, which
+ * counts median from an array of sorted elements.
+ * @param {Array} SortedTotalArray Array of elements, sorted from smallest to highest value.
+ * @returns {number} Counted median, rounded to lowest int.
+ */
 function medianCounter(SortedTotalArray) {
   let suda = false; 
   if (SortedTotalArray.length % 2 === 0) {
