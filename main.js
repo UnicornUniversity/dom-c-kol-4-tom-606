@@ -53,7 +53,7 @@ export function getEmployeeStatistics(employees) {
     averageWomenWorkload: workStats[6],
     sortedByWorkload: structuredClone(employees).sort((a, b) => a.workload - b.workload)
   }
-  // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší. structuredClone aby se nezměnil původní pole se zaměstnanci z výstupu ukol3.js.
+  // sortedByWorkload: seznam zaměstanců setříděných dle výše úvazku od nejmenšího po největší. structuredClone aby se nezměnilo původní pole se zaměstnanci z výstupu ukol3.js.
   
   /**
    * Subfunction to count required statistics about workload
@@ -100,8 +100,8 @@ export function getEmployeeStatistics(employees) {
       zenaWorkTotal += zenaWork[i];
     }
     // výpočet průměru
-    let zenaWorkArg = averageCounter(zenaWorkTotal, zenaWork.length);
-    return [workloadTotalCount.length, workload10Count.length, workload20Count.length, workload30Count.length, workload40Count.length, meanWork, +zenaWorkArg]
+    let zenaWorkAvg = averageCounter(zenaWorkTotal, zenaWork.length);
+    return [workloadTotalCount.length, workload10Count.length, workload20Count.length, workload30Count.length, workload40Count.length, meanWork, +zenaWorkAvg]
   }
   /**
    * Subfunction to count statistics about age
