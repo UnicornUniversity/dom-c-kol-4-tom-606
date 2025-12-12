@@ -17,7 +17,7 @@ export function main(dtoIn) {
 
 /**
  * We import and call the application used to generate Employee data and return it's output.
- * The imported aplication generates an aray of objects of employees based on input dtoIn.
+ * The imported aplication generates an array of objects of employees based on input dtoIn.
  * This function valides input, calls functions and then returns their output in an Array.
  * @param {object} dtoIn contains count of employees, age limit of employees {min, max}
  * @returns {Array} of employees
